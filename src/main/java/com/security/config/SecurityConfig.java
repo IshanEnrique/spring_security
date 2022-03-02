@@ -1,15 +1,16 @@
 package com.security.config;
 
+
+import javax.sql.DataSource;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
-import org.springframework.security.core.userdetails.User;
-import org.springframework.security.core.userdetails.UserDetails;
+import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
-import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.provisioning.JdbcUserDetailsManager;
 
 @Configuration
 public class SecurityConfig extends WebSecurityConfigurerAdapter {
@@ -59,19 +60,25 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 * }
 	 */
 
-	@Override
-	protected void configure(AuthenticationManagerBuilder auth) throws Exception {
-		// TODO Auto-generated method stub
+	/*
+	 * @Override protected void configure(AuthenticationManagerBuilder auth) throws
+	 * Exception { // TODO Auto-generated method stub
+	 * 
+	 * InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
+	 * UserDetails admin =
+	 * User.withUsername("admin").password("!@123Rah").authorities("admin").build();
+	 * UserDetails user1 =
+	 * User.withUsername("user1").password("12345").authorities("read").build();
+	 * UserDetails user2 =
+	 * User.withUsername("user2").password("12345").authorities("read").build();
+	 * 
+	 * manager.createUser(admin); manager.createUser(user1);
+	 * manager.createUser(user2); auth.userDetailsService(manager); }
+	 */
 
-		InMemoryUserDetailsManager manager = new InMemoryUserDetailsManager();
-		UserDetails admin = User.withUsername("admin").password("!@123Rah").authorities("admin").build();
-		UserDetails user1 = User.withUsername("user1").password("12345").authorities("read").build();
-		UserDetails user2 = User.withUsername("user2").password("12345").authorities("read").build();
-
-		manager.createUser(admin);
-		manager.createUser(user1);
-		manager.createUser(user2);
-		auth.userDetailsService(manager);
+	@Bean
+	public UserDetailsService userDetailsService(DataSource dataSource) {
+		return new JdbcUserDetailsManager(dataSource);
 	}
 
 	@Bean
