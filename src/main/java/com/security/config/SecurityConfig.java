@@ -1,6 +1,5 @@
 package com.security.config;
 
-
 import javax.sql.DataSource;
 
 import org.springframework.context.annotation.Bean;
@@ -76,10 +75,12 @@ public class SecurityConfig extends WebSecurityConfigurerAdapter {
 	 * manager.createUser(user2); auth.userDetailsService(manager); }
 	 */
 
-	@Bean
-	public UserDetailsService userDetailsService(DataSource dataSource) {
-		return new JdbcUserDetailsManager(dataSource);
-	}
+	/*
+	 * @Bean public UserDetailsService userDetailsService(DataSource dataSource) {
+	 * return new JdbcUserDetailsManager(dataSource); }
+	 */
+	
+	
 
 	@Bean
 	public PasswordEncoder passwordEncoder() {
