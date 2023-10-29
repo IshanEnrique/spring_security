@@ -1,0 +1,12 @@
+server:
+  port: 6715
+
+spring:
+  mvc:
+    view:
+      prefix: /WEB-INF/pages/
+      suffix: .jsp
+  security:
+    user:
+      name: rahul
+      password: 12345

@@ -1,0 +1,39 @@
+[
+	{
+		"username": "nidhi",
+		"password": "12345",
+		"role": [
+			"user"
+		]
+	},
+	{
+		"username": "yogi",
+		"password": "12345",
+		"role": [
+			"user"
+		]
+	},
+	{
+		"username": "ishan",
+		"password": "12345",
+		"role": [
+			"user"
+		]
+	},
+	{
+		"username": "vicky",
+		"password": "12345",
+		"role": [
+			"user",
+			"admin"
+		]
+	},
+	{
+		"username": "rahulnidhi",
+		"password": "12345",
+		"role": [
+			"user",
+			"admin"
+		]
+	}
+]
